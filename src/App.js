@@ -1,25 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
+import Navbar from './components/Navbar';
+import Diary from './components/Diary';
+import Reminder from './components/Reminder';
+import Login from './components/Login';
+import {connect} from 'react-redux'
 
-function App() {
+function App({displayName}) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app__container">
+        <Router>
+          <Switch>
+            <Route path="/" exact>
+            {displayName.length <= 0 ? 
+            <Redirect to="/login" /> 
+            : <><Navbar />
+              <Diary /></>
+            }
+            </Route>
+            <Route path="/login">
+            {displayName.length > 0 ? 
+            <Redirect to="/" /> 
+            :<Login />
+            }
+            </Route>
+            <Route path="/reminder">
+            {displayName.length <= 0 ? 
+            <Redirect to="/login" /> 
+            : <><Navbar />
+              <Reminder /></>
+            }
+            </Route>
+          </Switch>
+        </Router>
+      </div>
     </div>
   );
 }
 
-export default App;
+
+export default connect(state => ({...state}))(App);
