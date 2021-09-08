@@ -1,20 +1,15 @@
 import firebase from "firebase/app";
-import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBqllHCanwTL0OR_o3x3wsPAIma3BFovo8",
-    authDomain: "diary-a76a9.firebaseapp.com",
-    projectId: "diary-a76a9",
-    storageBucket: "diary-a76a9.appspot.com",
-    messagingSenderId: "419827492357",
-    appId: "1:419827492357:web:a40f814744fa73f0c99e6c"
-  };
+  apiKey: "AIzaSyD0BmwgvXidfa0MR3Wk1UfPt14b85xONH0",
+  authDomain: "product-verification-sys-ab74b.firebaseapp.com",
+  projectId: "product-verification-sys-ab74b",
+  storageBucket: "product-verification-sys-ab74b.appspot.com",
+  messagingSenderId: "100663532783",
+  appId: "1:100663532783:web:bb8ba85e6287aa0748cf1a"
+};
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-export const provider = new firebase.auth.GoogleAuthProvider();
-
-export const auth = firebase.auth();
 
 export const db = firebase.firestore();

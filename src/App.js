@@ -1,8 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
-import Navbar from './components/Navbar';
-import Diary from './components/Diary';
-import Reminder from './components/Reminder';
+import Dashboard from './pages/Dashboard';
+import Home from './pages/Home'
 import Login from './components/Login';
 import {connect} from 'react-redux'
 
@@ -13,23 +12,30 @@ function App({displayName}) {
         <Router>
           <Switch>
             <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/verify">
             {displayName.length <= 0 ? 
-            <Redirect to="/login" /> 
-            : <><Navbar />
-              <Diary /></>
+            <Redirect to="/admin" /> 
+            : <Dashboard />
             }
             </Route>
-            <Route path="/login">
+            <Route path="/dashboard">
+            {displayName.length <= 0 ? 
+            <Redirect to="/admin" /> 
+            : <Dashboard />
+            }
+            </Route>
+            <Route path="/new-product-registration">
+            {displayName.length <= 0 ? 
+            <Redirect to="/admin" /> 
+            : <Dashboard />
+            }
+            </Route>
+            <Route path="/admin">
             {displayName.length > 0 ? 
-            <Redirect to="/" /> 
+            <Redirect to="/dashboard" /> 
             :<Login />
-            }
-            </Route>
-            <Route path="/reminder">
-            {displayName.length <= 0 ? 
-            <Redirect to="/login" /> 
-            : <><Navbar />
-              <Reminder /></>
             }
             </Route>
           </Switch>
